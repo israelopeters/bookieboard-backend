@@ -32,7 +32,6 @@ public class WebSecurityConfig {
                         .requestMatchers(
                                 "/api/v1/*"
                         ).permitAll()
-                        .requestMatchers("/api/v1/users/delete*").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .securityContext((securityContext) -> securityContext
