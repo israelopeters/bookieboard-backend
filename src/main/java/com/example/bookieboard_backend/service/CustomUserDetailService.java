@@ -29,7 +29,7 @@ public class CustomUserDetailService implements UserDetailsService {
         Optional<User> userCheck = userRepository.findByEmail(email);
 
         if (userCheck.isEmpty()) {
-            throw new UsernameNotFoundException("Invalid username or password");
+            throw new UsernameNotFoundException("Invalid username or password!");
         } else {
             User user = userCheck.get();
             return new org.springframework.security.core.userdetails.User(
