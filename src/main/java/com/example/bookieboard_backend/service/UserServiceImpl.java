@@ -4,7 +4,6 @@ import com.example.bookieboard_backend.exception.UserNotFoundException;
 import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
