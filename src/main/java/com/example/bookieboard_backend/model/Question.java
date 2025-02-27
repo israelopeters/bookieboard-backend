@@ -24,11 +24,6 @@ public class Question {
 
     private List<String> options = new ArrayList<>();
 
-    private DifficultyLevel difficultyLevel;
+    private QuestionDifficultyLevel difficultyLevel;
 
-    public enum DifficultyLevel {
-        EASY,
-        MEDIUM,
-        HARD
-    }
 }
