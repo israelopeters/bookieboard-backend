@@ -6,6 +6,7 @@ import com.example.bookieboard_backend.model.DtoMapper;
 import com.example.bookieboard_backend.model.Role;
 import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.model.dto.UserCreationDto;
+import com.example.bookieboard_backend.model.dto.UserDto;
 import com.example.bookieboard_backend.repository.RoleRepository;
 import com.example.bookieboard_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(UserCreationDto userCreationDto) {
+    public UserDto addUser(UserCreationDto userCreationDto) {
 
         if (isUserPresent(userCreationDto.getEmail())) {
             throw new UserAlreadyExistsException("User already exists!");
@@ -65,7 +66,8 @@ public class UserServiceImpl implements UserService {
         user.setRoles(List.of(role));
         user.setDateCreated(LocalDate.now());
 
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        return dtoMapper.toUserDto(savedUser);
     }
 
     private Role assignRole() {

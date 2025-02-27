@@ -2,6 +2,7 @@ package com.example.bookieboard_backend.controller;
 
 import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.model.dto.UserCreationDto;
+import com.example.bookieboard_backend.model.dto.UserDto;
 import com.example.bookieboard_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@RequestBody UserCreationDto userCreationDto) {
+    public ResponseEntity<UserDto> addUser(@RequestBody UserCreationDto userCreationDto) {
         return new ResponseEntity<>(
                 userService.addUser(userCreationDto), HttpStatus.CREATED);
     }
