@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ap1/v1/questions")
+@RequestMapping("/api/v1/questions")
 public class QuestionController {
 
     @Autowired
@@ -23,24 +22,15 @@ public class QuestionController {
 
     @GetMapping("/")
     public ResponseEntity<List<Question>> getAllQuestions() {
-
-        List<Question> questionList = questionService.getAllQuestions();
-
-        if (questionList.isEmpty()) {
-            questionList = new ArrayList<>();
-        }
-        return new ResponseEntity<>(questionList, HttpStatus.OK);
+        return new ResponseEntity<>(
+                questionService.getAllQuestions(), HttpStatus.OK);
     }
 
     @GetMapping("/difficulty")
     public ResponseEntity<List<Question>> getQuestionByDifficultyLevel(
             @RequestParam QuestionDifficultyLevel difficultyLevel) {
 
-        List<Question> questionList = questionService.getQuestionsByDifficultyLevel(difficultyLevel);
-
-        if (questionList.isEmpty()) {
-            questionList = new ArrayList<>();
-        }
-        return new ResponseEntity<>(questionList, HttpStatus.OK);
+        return new ResponseEntity<>(
+                questionService.getQuestionsByDifficultyLevel(difficultyLevel), HttpStatus.OK);
     }
 }
