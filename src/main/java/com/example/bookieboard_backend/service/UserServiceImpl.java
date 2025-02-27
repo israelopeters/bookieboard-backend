@@ -1,5 +1,6 @@
 package com.example.bookieboard_backend.service;
 
+import com.example.bookieboard_backend.exception.UserAlreadyExistsException;
 import com.example.bookieboard_backend.exception.UserNotFoundException;
 import com.example.bookieboard_backend.model.DtoMapper;
 import com.example.bookieboard_backend.model.Role;
@@ -48,6 +49,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserCreationDto userCreationDto) {
+
+        if (isUserPresent(userCreationDto.getEmail())) {
+            throw new UserAlreadyExistsException("User already exists!");
+        }
+
         User user = dtoMapper.toUser(userCreationDto);
         user.setBookieRank(User.UserRank.ROOKIE);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -66,5 +72,9 @@ public class UserServiceImpl implements UserService {
         Role role = new Role();
         role.setName("ROLE_USER");
         return roleRepository.save(role);
+    }
+
+    private boolean isUserPresent(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 }
