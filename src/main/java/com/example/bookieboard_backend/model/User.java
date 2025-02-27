@@ -43,7 +43,7 @@ public class User implements Serializable {
     )
     private List<Role> roles =  new ArrayList<>();
 
-    enum UserRank {
+    public enum UserRank {
         ROOKIE,
         SEASONED,
         VETERAN

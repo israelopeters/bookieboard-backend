@@ -32,9 +32,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(
-                                "/api/v1/*"
-                        ).permitAll()
+                        .requestMatchers("/api/v1/users/add").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .securityContext((securityContext) -> securityContext
