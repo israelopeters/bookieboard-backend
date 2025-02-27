@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-    @Query("select q from Question q where q.difficultyLevel = ?1")
+    @Query("select q from questions q where q.difficultyLevel = ?1")
     List<Question> findByDifficultyLevel(QuestionDifficultyLevel difficultyLevel);
 }

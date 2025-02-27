@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,14 +23,24 @@ public class QuestionController {
 
     @GetMapping("/")
     public ResponseEntity<List<Question>> getAllQuestions() {
-        return new ResponseEntity<>(
-                questionService.getAllQuestions(), HttpStatus.OK);
+
+        List<Question> questionList = questionService.getAllQuestions();
+
+        if (questionList.isEmpty()) {
+            questionList = new ArrayList<>();
+        }
+        return new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
     @GetMapping("/difficulty")
     public ResponseEntity<List<Question>> getQuestionByDifficultyLevel(
             @RequestParam QuestionDifficultyLevel difficultyLevel) {
-        return new ResponseEntity<>(
-                questionService.getAllQuestions(), HttpStatus.OK);
+
+        List<Question> questionList = questionService.getQuestionsByDifficultyLevel(difficultyLevel);
+
+        if (questionList.isEmpty()) {
+            questionList = new ArrayList<>();
+        }
+        return new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 }
