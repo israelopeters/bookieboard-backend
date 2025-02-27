@@ -8,4 +8,5 @@ import java.util.List;
 public interface QuestionService {
     List<Question> getAllQuestions();
     List<Question> getQuestionsByDifficultyLevel(QuestionDifficultyLevel difficultyLevel);
+    Question addQuestion(Question question);
 }

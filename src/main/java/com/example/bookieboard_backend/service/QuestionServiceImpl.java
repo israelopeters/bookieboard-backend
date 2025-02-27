@@ -23,4 +23,9 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> getQuestionsByDifficultyLevel(QuestionDifficultyLevel difficultyLevel) {
         return questionRepository.findByDifficultyLevel(difficultyLevel);
     }
+
+    @Override
+    public Question addQuestion(Question question) {
+        return questionRepository.save(question);
+    }
 }
