@@ -34,15 +34,20 @@ public class UserServiceImpl implements UserService {
     RoleRepository roleRepository;
 
     @Override
-    public List<User> getAllUsers() {
-        return new ArrayList<>(userRepository.findAll());
+    public List<UserDto> getAllUsers() {
+        return new ArrayList<>(userRepository
+                        .findAll()
+                        .stream()
+                        .map(user -> dtoMapper.toUserDto(user))
+                        .toList());
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public UserDto getUserByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
-            return user.get();
+            return dtoMapper.toUserDto(
+                    user.get());
         } else {
             throw new UserNotFoundException("User not found!");
         }
