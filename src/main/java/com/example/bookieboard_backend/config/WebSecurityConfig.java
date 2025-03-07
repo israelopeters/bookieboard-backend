@@ -1,5 +1,7 @@
 package com.example.bookieboard_backend.config;
 
+import com.example.bookieboard_backend.model.Role;
+import com.example.bookieboard_backend.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +13,19 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -33,6 +44,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/api/v1/users/add").permitAll()
+                        .requestMatchers("/questions", "/questions/add").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .securityContext((securityContext) -> securityContext
@@ -61,5 +73,20 @@ public class WebSecurityConfig {
                 .passwordEncoder(passwordEncoder());
 
         auth.eraseCredentials(false);
+    }
+
+    // Pre-register an admin user
+    @Bean
+    UserDetailsService userDetailsService() {
+        Role adminRole = new Role();
+        adminRole.setName("ROLE_ADMIN");
+        Collection<Role> roles = List.of(adminRole);
+
+        UserDetails adminUser = new User(
+                "admin@email.com",
+                "adminpassword",
+                CustomUserDetailService.mapRolesToAuthorities(roles));
+
+        return new InMemoryUserDetailsManager(adminUser);
     }
 }
