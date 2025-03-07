@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BookieBoard Questions</title>
+    </head>
+    <body>
+        <h1>All BookieBoard Questions!</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Detail</th>
+                <th>Options</th>
+                <th>Difficulty Level</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="question: ${questionList}">
+                <td th:text="${question.id}"></td>
+                <td th:text="${question.detail}"></td>
+                <td th:text="${question.options[0], question.options[1], question.options[2]}"></td>
+                <td th:text="${question.difficultyLevel}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

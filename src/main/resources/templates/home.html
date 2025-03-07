@@ -13,5 +13,12 @@
             <li>View All Questions<a th:href="@{/questions}"></a></li>
             <li><p><a th:href="@{/logout}">Logout</a></p></li>
         </ul>
+
+        <p>Nothing more to do?</p>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+
     </body>
 </html>
