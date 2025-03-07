@@ -46,7 +46,8 @@ public class User implements Serializable {
     public enum UserRank {
         ROOKIE,
         SEASONED,
-        VETERAN
+        VETERAN,
+        ADMIN
     }
 
 }

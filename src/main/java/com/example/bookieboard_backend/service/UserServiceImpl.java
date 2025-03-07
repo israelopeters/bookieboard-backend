@@ -75,6 +75,27 @@ public class UserServiceImpl implements UserService {
         return dtoMapper.toUserDto(savedUser);
     }
 
+    // Only call when creating admin user
+    @Override
+    public User addUser(User user) {
+
+        if (isUserPresent(user.getEmail())) {
+            throw new UserAlreadyExistsException("User already exists!");
+        }
+
+        user.setBookieRank(User.UserRank.ADMIN);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role role = new Role();
+        if (user.getRoles() == null) {
+            role.setName("ROLE_ADMIN");
+        }
+        user.setRoles(List.of(role));
+        user.setDateCreated(LocalDate.now());
+
+        return userRepository.save(user);
+    }
+
     private Role assignRole() {
         Role role = new Role();
         role.setName("ROLE_USER");

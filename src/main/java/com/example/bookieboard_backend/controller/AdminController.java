@@ -31,6 +31,9 @@ public class AdminController {
     UserRepository userRepository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     DtoMapper dtoMapper;
 
     @GetMapping("/admin/signup")
@@ -55,7 +58,7 @@ public class AdminController {
         role.setName("ROLE_ADMIN");
         User user = dtoMapper.toUser(userCreationDto);
         user.setRoles(List.of(role));
-        userRepository.save(user);
+        userService.addUser(user);
         return "admin_signup_success";
     }
 

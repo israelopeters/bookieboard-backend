@@ -1,5 +1,6 @@
 package com.example.bookieboard_backend.service;
 
+import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.model.dto.UserCreationDto;
 import com.example.bookieboard_backend.model.dto.UserDto;
 
@@ -9,4 +10,5 @@ public interface UserService {
     List<UserDto> getAllUsers();
     UserDto getUserByEmail(String email);
     UserDto addUser(UserCreationDto userCreationDto);
+    User addUser(User user);
 }
