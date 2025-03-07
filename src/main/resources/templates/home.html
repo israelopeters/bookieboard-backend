@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BookieBoard Admin Panel</title>
+    </head>
+    <body>
+        <h1>BookieBoard Admin Page</h1>
+        <p>See available admin options below.</p>
+        <ul>
+            <li><p><a th:href="@{/questions/add}">Add New Question</a></p></li>
+            <li>View All Questions<a th:href="@{/questions}"></a></li>
+            <li><p><a th:href="@{/logout}">Logout</a></p></li>
+        </ul>
+    </body>
+</html>
