@@ -78,19 +78,4 @@ public class WebSecurityConfig {
 
         auth.eraseCredentials(false);
     }
-
-    // Pre-register an admin user
-    @Bean
-    UserDetailsService userDetailsService() {
-        Role adminRole = new Role();
-        adminRole.setName("ROLE_ADMIN");
-        Collection<Role> roles = List.of(adminRole);
-
-        UserDetails adminUser = new User(
-                "admin@email.com",
-                "adminpassword",
-                CustomUserDetailService.mapRolesToAuthorities(roles));
-
-        return new InMemoryUserDetailsManager(adminUser);
-    }
 }
