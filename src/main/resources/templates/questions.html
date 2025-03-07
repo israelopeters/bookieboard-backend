@@ -20,11 +20,14 @@
             <tr th:each="question: ${questionList}">
                 <td th:text="${question.id}"></td>
                 <td th:text="${question.detail}"></td>
-                <td th:text="${question.options[0], question.options[1], question.options[2], question.options[3]}"></td>
+                <td th:text="${question.options}"></td>
                 <td th:text="${question.difficultyLevel}"></td>
             </tr>
             </tbody>
         </table>
+
+        <p><a th:href="@{/admin/home}">Home</a></p>
+
 
     </body>
 </html>

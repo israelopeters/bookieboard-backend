@@ -36,6 +36,11 @@ public class AdminController {
     @Autowired
     DtoMapper dtoMapper;
 
+    @GetMapping("/admin/home")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/admin/signup")
     public String showAdminSignupForm(Model model) {
         User user = new User();

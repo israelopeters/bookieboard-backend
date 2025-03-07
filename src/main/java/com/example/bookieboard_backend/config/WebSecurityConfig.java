@@ -43,15 +43,15 @@ public class WebSecurityConfig {
                         .requestMatchers("/api/v1/users/add", "/admin/signup",
                                 "/admin/signup/save")
                             .permitAll()
-                        .requestMatchers("/questions", "/questions/add").hasRole("ADMIN")
+                        .requestMatchers("/questions/add").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin((form) -> form
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/questions")
+                        .defaultSuccessUrl("/admin/home")
                         .permitAll())
                 .logout((logout) -> logout
-                        .logoutSuccessUrl("/home")
+                        .logoutSuccessUrl("/login")
                         .permitAll())
                 .securityContext((securityContext) -> securityContext
                         .requireExplicitSave(true)
