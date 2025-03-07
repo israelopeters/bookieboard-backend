@@ -40,7 +40,9 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/api/v1/users/add").permitAll()
+                        .requestMatchers("/api/v1/users/add", "/admin/signup",
+                                "/admin/signup/save")
+                            .permitAll()
                         .requestMatchers("/questions", "/questions/add").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
