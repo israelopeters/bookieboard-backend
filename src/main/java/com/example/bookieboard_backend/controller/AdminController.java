@@ -58,7 +58,7 @@ public class AdminController {
         role.setName("ROLE_ADMIN");
         User user = dtoMapper.toUser(userCreationDto);
         user.setRoles(List.of(role));
-        userService.addUser(user);
+        userService.addAdminUser(user);
         return "admin_signup_success";
     }
 

@@ -10,5 +10,5 @@ public interface UserService {
     List<UserDto> getAllUsers();
     UserDto getUserByEmail(String email);
     UserDto addUser(UserCreationDto userCreationDto);
-    User addUser(User user);
+    User addAdminUser(User user);
 }

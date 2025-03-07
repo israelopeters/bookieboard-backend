@@ -77,18 +77,18 @@ public class UserServiceImpl implements UserService {
 
     // Only call when creating admin user
     @Override
-    public User addUser(User user) {
+    public User addAdminUser(User user) {
 
         if (isUserPresent(user.getEmail())) {
             throw new UserAlreadyExistsException("User already exists!");
         }
 
-        user.setBookieRank(User.UserRank.ADMIN);
+        user.setBookieRank(User.UserRank.SEASONED);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role role = new Role();
+        Role role = roleRepository.findByName("ROLE_ADMIN");
         if (user.getRoles() == null) {
-            role.setName("ROLE_ADMIN");
+            role = assignRoleAdmin();
         }
         user.setRoles(List.of(role));
         user.setDateCreated(LocalDate.now());
@@ -99,6 +99,12 @@ public class UserServiceImpl implements UserService {
     private Role assignRole() {
         Role role = new Role();
         role.setName("ROLE_USER");
+        return roleRepository.save(role);
+    }
+
+    private Role assignRoleAdmin() {
+        Role role = new Role();
+        role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
 
