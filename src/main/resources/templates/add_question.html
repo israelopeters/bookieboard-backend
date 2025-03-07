@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Question</title>
+    </head>
+    <body>
+        <h1>Add A New Question</h1>
+        <form th:action="@{/questions/add/save}"
+              method="post"
+              th:object="${newQuestion}">
+            <li>
+                <label for="detail">Detail: </label>
+                <textarea rows="5" cols="40" id="detail" name="detail" th:field="*{detail}"
+                          placeholder="Enter a question here">
+                    </textarea>
+            </li>
+            <li>
+                <label for="optionOne">Option 1: </label>
+                <input type="text" id="optionOne" name="optionOne" th:field="*{options[0]}" placeholder="Option 1"/>
+            </li>
+            <li>
+                <label for="optionTwo">Option 2: </label>
+                <input type="text" id="optionTwo" name="optionTwo" th:field="*{options[1]}" placeholder="Option 2"/>
+            </li>
+            <li>
+                <label for="optionThree">Option 3: </label>
+                <input type="text" id="optionThree" name="optionThree" th:field="*{options[2]}" placeholder="Option 3"/>
+            </li>
+            <li>
+                <label for="optionFour">Option 4: </label>
+                <input type="text" id="optionFour" name="optionFour" th:field="*{options[3]}" placeholder="Option 4"/>
+            </li>
+            <li>
+                <label for="difficultyLevel">Difficulty Level: </label>
+                <input type="text" id="difficultyLevel" name="difficultyLevel" th:field="*{difficultyLevel}" placeholder="Enter difficulty level"/>
+            </li>
+            <p class="button">
+                <button type="submit">Add question</button>
+            </p>
+        </form>
+
+    </body>
+</html>
