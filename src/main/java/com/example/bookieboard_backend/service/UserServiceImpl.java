@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
-        if (user.getRoles() == null) {
+        if (role == null) {
             role = assignRoleAdmin();
         }
         user.setRoles(List.of(role));

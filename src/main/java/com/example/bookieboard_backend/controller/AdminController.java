@@ -54,10 +54,7 @@ public class AdminController {
             model.addAttribute("adminUserForSignup", userCreationDto);
             return "admin_signup";
         }
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
         User user = dtoMapper.toUser(userCreationDto);
-        user.setRoles(List.of(role));
         userService.addAdminUser(user);
         return "admin_signup_success";
     }
