@@ -24,6 +24,8 @@ public class Question {
 
     private List<String> options = new ArrayList<>();
 
+    private Integer correctOption;
+
     private QuestionDifficultyLevel difficultyLevel;
 
 }

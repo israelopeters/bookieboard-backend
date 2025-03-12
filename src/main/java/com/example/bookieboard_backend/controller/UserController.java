@@ -1,6 +1,5 @@
 package com.example.bookieboard_backend.controller;
 
-import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.model.dto.UserCreationDto;
 import com.example.bookieboard_backend.model.dto.UserDto;
 import com.example.bookieboard_backend.service.UserService;
