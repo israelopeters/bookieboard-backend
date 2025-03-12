@@ -13,6 +13,7 @@ public class DtoMapper {
         user.setLastName(userCreationDto.getLastName());
         user.setEmail(userCreationDto.getEmail());
         user.setPassword(userCreationDto.getPassword());
+        user.setBookieScore(0);
         return user;
     }
 
@@ -23,6 +24,11 @@ public class DtoMapper {
         userDto.setEmail(user.getEmail());
         userDto.setBookieRank(user.getBookieRank());
         userDto.setRoles(user.getRoles());
+
+        if (user.getBookieScore() == null) {
+            userDto.setBookieScore(0);
+        }
+
         return userDto;
     }
 }

@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("User already exists!");
         }
 
+        user.setBookieScore(0);
         user.setBookieRank(User.UserRank.SEASONED);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

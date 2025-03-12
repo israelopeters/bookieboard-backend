@@ -33,6 +33,8 @@ public class User implements Serializable {
 
     private LocalDate dateCreated;
 
+    private Integer bookieScore;
+
     private UserRank bookieRank;
 
     @ManyToMany(fetch = FetchType.EAGER)
