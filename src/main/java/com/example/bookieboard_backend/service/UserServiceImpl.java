@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = dtoMapper.toUser(userCreationDto);
+        user.setBookieScore(0);
         user.setBookieRank(User.UserRank.ROOKIE);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -83,6 +84,7 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("User already exists!");
         }
 
+        user.setBookieScore(0);
         user.setBookieRank(User.UserRank.SEASONED);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

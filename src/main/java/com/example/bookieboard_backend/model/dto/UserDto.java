@@ -21,6 +21,8 @@ public class UserDto {
 
     private String lastName;
 
+    private Integer bookieScore;
+
     private User.UserRank bookieRank;
 
     private List<Role> roles;
