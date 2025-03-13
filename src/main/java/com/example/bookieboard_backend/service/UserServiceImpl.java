@@ -46,6 +46,13 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
+            // Set new bookieScore field to zero for users created before adding the field to the model
+            if (user.get().getBookieScore() == null) {
+                user = user.map(oldUser -> {
+                        oldUser.setBookieScore(0);
+                        return userRepository.save(oldUser);}
+                );
+            }
             return dtoMapper.toUserDto(
                     user.get());
         } else {
