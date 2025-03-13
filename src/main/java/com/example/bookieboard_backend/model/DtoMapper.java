@@ -22,6 +22,7 @@ public class DtoMapper {
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());
+        userDto.setBookieScore(user.getBookieScore());
         userDto.setBookieRank(user.getBookieRank());
         userDto.setRoles(user.getRoles());
 
