@@ -11,4 +11,5 @@ public interface UserService {
     UserDto getUserByEmail(String email);
     UserDto addUser(UserCreationDto userCreationDto);
     User addAdminUser(User user);
+    UserDto updateUserScore(String email, int score);
 }

@@ -104,6 +104,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public UserDto updateUserScore(String email, int newScore) {
+        Optional<User> existingUser = userRepository.findByEmail(email);
+        if(existingUser.isPresent()) {
+            existingUser = existingUser.map(user -> {
+                user.setBookieScore(newScore);
+                return userRepository.save(user);
+            });
+        } else {
+            throw new UserNotFoundException("User not found!");
+        }
+        return dtoMapper.toUserDto(existingUser.get());
+    }
+
     private Role assignRole() {
         Role role = new Role();
         role.setName("ROLE_USER");

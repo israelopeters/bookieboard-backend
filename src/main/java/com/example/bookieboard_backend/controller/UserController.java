@@ -33,4 +33,10 @@ public class UserController {
                 userService.addUser(userCreationDto), HttpStatus.CREATED);
     }
 
+    @PatchMapping
+    public ResponseEntity<UserDto> updateUserScore(@RequestBody String email, int newScore) {
+        return new ResponseEntity<>(
+                userService.updateUserScore(email, newScore), HttpStatus.ACCEPTED);
+    }
+
 }
