@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
         if(existingUser.isPresent()) {
             existingUser = existingUser.map(user -> {
                 user.setBookieScore(
-                        (Integer) newFieldValues.get("bookieScore"));
+                        user.getBookieScore() + ((Integer) newFieldValues.get("bookieScore")));
                 return userRepository.save(user);
             });
         } else {
