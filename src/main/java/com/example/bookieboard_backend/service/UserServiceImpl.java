@@ -14,9 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -105,11 +103,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUserScore(String email, int newScore) {
-        Optional<User> existingUser = userRepository.findByEmail(email);
+    public UserDto updateUserScore(HashMap<String, Object> newFieldValues) {
+        Optional<User> existingUser = userRepository.findByEmail(
+                String.valueOf(newFieldValues.get("email")));
+
         if(existingUser.isPresent()) {
             existingUser = existingUser.map(user -> {
-                user.setBookieScore(newScore);
+                user.setBookieScore(
+                        (Integer) newFieldValues.get("bookieScore"));
                 return userRepository.save(user);
             });
         } else {

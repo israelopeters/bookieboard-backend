@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -33,10 +34,10 @@ public class UserController {
                 userService.addUser(userCreationDto), HttpStatus.CREATED);
     }
 
-    @PatchMapping
-    public ResponseEntity<UserDto> updateUserScore(@RequestBody String email, int newScore) {
+    @PatchMapping("/update")
+    public ResponseEntity<UserDto> updateUserScore(@RequestBody HashMap<String, Object> newFieldValues) {
         return new ResponseEntity<>(
-                userService.updateUserScore(email, newScore), HttpStatus.ACCEPTED);
+                userService.updateUserScore(newFieldValues), HttpStatus.ACCEPTED);
     }
 
 }
