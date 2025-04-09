@@ -2,7 +2,6 @@ package com.example.bookieboard_backend.controller;
 
 import com.example.bookieboard_backend.model.DtoMapper;
 import com.example.bookieboard_backend.model.Question;
-import com.example.bookieboard_backend.model.Role;
 import com.example.bookieboard_backend.model.User;
 import com.example.bookieboard_backend.model.dto.UserCreationDto;
 import com.example.bookieboard_backend.repository.UserRepository;
