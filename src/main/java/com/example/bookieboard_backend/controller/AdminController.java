@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,13 @@ public class AdminController {
     @GetMapping("/admin/home")
     public String home() {
         return "home";
+    }
+
+    @GetMapping("/admin/delete")
+    public String delete(Model model) {
+        User userToDelete = new User();
+        model.addAttribute("userToDelete", userToDelete);
+        return "delete";
     }
 
     @GetMapping("/admin/signup")
@@ -80,11 +88,18 @@ public class AdminController {
     @PostMapping("/admin/questions/add/save")
     public String addNewQuestion(
             @ModelAttribute("newQuestion") Question question, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "Error";
         }
         questionService.addQuestion(question);
         return "redirect:/admin/questions"; // Redirect to endpoint instead of template so as to load updated reviews list
+    }
+
+    @DeleteMapping("/admin/delete/user")
+    public String deleteUser(@ModelAttribute("userToDelete") User userToDelete) {
+        userService.deleteUserById(userToDelete);
+        System.out.println("Deleted user with ID: " + userToDelete.getId());
+        return "user_deleted_success";
     }
 
     private Boolean isUserExists(User user) {

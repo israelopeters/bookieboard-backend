@@ -119,6 +119,15 @@ public class UserServiceImpl implements UserService {
         return dtoMapper.toUserDto(existingUser.get());
     }
 
+    @Override
+    public void deleteUserById(User userToDelete) {
+        if (isUserPresent(userToDelete)) {
+            userRepository.deleteById(userToDelete.getId());
+        } else {
+            throw new UserNotFoundException("User not found!");
+        }
+    }
+
     private Role assignRole() {
         Role role = new Role();
         role.setName("ROLE_USER");
@@ -133,5 +142,8 @@ public class UserServiceImpl implements UserService {
 
     private boolean isUserPresent(String email) {
         return userRepository.findByEmail(email).isPresent();
+    }
+    private boolean isUserPresent(User userToDelete) {
+        return userRepository.findById(userToDelete.getId()).isPresent();
     }
 }

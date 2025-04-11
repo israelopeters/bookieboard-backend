@@ -13,4 +13,5 @@ public interface UserService {
     UserDto addUser(UserCreationDto userCreationDto);
     User addAdminUser(User user);
     UserDto updateUserScore(HashMap<String, Object> newFieldValues);
+    void deleteUserById(User userToDelete);
 }
