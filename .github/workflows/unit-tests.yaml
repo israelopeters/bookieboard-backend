@@ -21,6 +21,7 @@ jobs:
           cache: maven
 
       - name: Execute unit tests command
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: mvn clean test
-
-
