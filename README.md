@@ -2,7 +2,7 @@
 Backend API service to power the Bookieboard Android app
 
 # Bookieboard API
-Bookieboard is a simple app to help you test your bibliophilic depths relative to other bibliophiles, just for fun! This is the backend API that allows a client (e.g., Android, iOS, desktop, or web client) access to the data store.
+Bookieboard is a simple app to help you test your bibliophilic depths relative to other bibliophiles, just for fun! This is the backend API that allows [the Android client](https://github.com/israelopeters/bookieboard-android) access to the data store.
 
 ## MVP Features
 A user can perform the following actions:
