@@ -14,7 +14,7 @@ A user can perform the following actions:
 - View bookieboard (leaderboard)
 
 ## Using the API
-### Consuming from Cloud Instance
+### From Cloud Instance
 The application has been deployed on the cloud. To consume the API, copy and visit the URL below and create an account. The API should be easy to navigate from there; for example, you can add a new question (please use responsibly) and view existing questions.
 
 ```
