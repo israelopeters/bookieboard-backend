@@ -21,6 +21,6 @@ jobs:
           cache: maven
 
       - name: Execute unit tests command
-        run: ./mvnw clean test
+        run: mvn clean test
 
 
