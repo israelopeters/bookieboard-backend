@@ -13,6 +13,13 @@ A user can perform the following actions:
 - Take quizzes
 - View bookieboard (leaderboard)
 
+## Admin Management Page
+This is a simple UI for easy admin management functionalities. 
+
+
+![BookieBoard_Admin](https://github.com/user-attachments/assets/5e329641-3276-42c8-be65-019515c62f2f)
+
+
 ## Using the API
 ### From Cloud Instance
 The application has been deployed on the cloud. To consume the API, copy and visit the URL below and create an account. The API should be easy to navigate from there; for example, you can add a new question (please use responsibly) and view existing questions.
